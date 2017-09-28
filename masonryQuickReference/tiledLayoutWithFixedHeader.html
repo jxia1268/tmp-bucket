@@ -44,29 +44,23 @@
 		/* overflow-y: auto; 縦スクロールは外枠のみにする*/
 	}
 	.grid-group {
-	/* 問題： 
-		ページ内遷移でヘッダに隠れないようにするにはpadding/marginを埋めれば良い。
-		ただし、同時に垂直上の要素との間に空白が出来てしまう。
-		プラス、垂直上の要素内のリンクに被るとリンクをクリックできなくなる。
-		疑似要素を使用すれば空白はできないし、リンクに被ることも無いが、
-		ページ内遷移にも疑似要素の為やはりヘッダに一部が隠れてしまう。
-		結論：
-		グルーピング諦めるか、ヘッダを左側に縦に設ける。
-		参考：
-		http://cgsc.info/programming/20151222_fixed-header_scroll
-		http://www.tomotanuki.com/entry/web-in-page-link-fixed
-		http://coliss.com/articles/build-websites/operation/css/css-tutorial-pseudo-element-before-after-by-hongkiat.html
-		
-		padding-top: 160px;
-		margin-top: -160px;
-	*/
+		padding-top: 70px;
+		margin-top: -70px;
+		background-image: url("https://besthqwallpapers.com/Uploads/26-4-2017/15390/minions-characters-bob-kevin-stewart.jpg");
+		/* 
+		background images:
+		https://besthqwallpapers.com/Uploads/26-4-2017/15390/minions-characters-bob-kevin-stewart.jpg		
+		*/
+		background-position: center;
+		background-size: cover;
 	}
 	.grid-item { 
 		width: 400px;
-		/*
-		border: 1px solid aqua;
-		*/
 		padding: 10px;
+	}
+	.grid-item-inner-con {
+		position: relative;
+		z-index: 10;
 	}
 
 	</style>
@@ -96,12 +90,12 @@
 
 				<div class="nav navbar-nav dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color: white; ">
-						グループ @苦戦中 (ページ内遷移でヘッダに一部が隠れちゃう。詳細はCSSのコメント参照)
+						グループ
 					<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="#grp01item001">グループ①</a></li>
-						<li><a href="#grp02item001">グループ② - 「あ」のグループ</a></li>
-						<li><a href="#grp03item001">グループ③ - 「い」のグループ</a></li>
+						<li><a href="#grid-group-01">グループ①</a></li>
+						<li><a href="#grid-group-02">グループ② - 「あ」のグループ</a></li>
+						<li><a href="#grid-group-03">グループ③ - 「い」のグループ</a></li>
 					</ul>
 				</div>
 
@@ -110,65 +104,47 @@
 	</nav>
 
 	<!-- ▼ 見出し欄固定用の箱 (required) -->
-	<div class="grid-container">
+	<div class="body-contents-container">
 
 	<!-- ▼ タイル表示される要素を入れる箱(隙間なく整列させたいボックス群を囲むブロック) (required) -->
-	<div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 20 }'>
+	<div id="grid-group-01" class="grid grid-group" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 20 }'>
 
-		
-			<div id="grp01item001" class="grid-item">
-				<div class="grid-item-inner-con" style="background-color: ghostwhite; padding: 10px;">
-					<!-- 個別タイルの見出し -->
-					<p style="font-size: x-large; font-weight: bold; text-align: center; color: maroon; display: inline; ">
-						締切前X投票前の場合の見てくれ－ほげほげほげげ
-					</p>
-					<h5 style="display: inline; ">
-					<span class="label label-default">締切</span> あと<span style="font-weight: bold; color: crimson;">3</span>日
-					</h5>
-					<div class="container-fluid row" style="padding: 10px 0 10px 0;">
-						<div class="col-md-9">
-							<!-- // statusbar -->
-							<div class="progress" style="margin: 2px 0 0 10px; padding: 0; text-align: center; ">
-								<div class="progress-bar progress-bar-primary" style="width: 16%;">
-									<!-- 獲得数比率 --><span style="color: white;"><!-- 獲得数 -->8</span>
-								</div>
-								<div class="progress-bar progress-bar-warning" style="width: 84%;">
-									<span style="color: white;">ホゲホゲまであと42票</span>
-								</div>
+		<div class="grid-item">
+			<div class="grid-item-inner-con" style="background-color: ghostwhite; padding: 10px;">
+				<!-- 個別タイルの見出し -->
+				<p style="font-size: x-large; font-weight: bold; text-align: center; color: maroon; display: inline; ">
+					締切前X投票前の場合の見てくれ－ほげほげほげげ
+				</p>
+				<h5 style="display: inline; ">
+				<span class="label label-default">締切</span> あと<span style="font-weight: bold; color: crimson;">1</span>日
+				</h5>
+				<div class="container-fluid row" style="padding: 10px 0 10px 0;">
+					<div class="col-md-9">
+						<!-- // statusbar -->
+						<div class="progress" style="margin: 2px 0 0 10px; padding: 0; text-align: center; ">
+							<div class="progress-bar progress-bar-primary" style="width: 16%;">
+								<!-- 獲得数比率 --><span style="color: white;"><!-- 獲得数 -->8</span>
 							</div>
-							<!-- statusbar // -->
-						</div>
-						<div class="col-md-3" style="">
-							<h4 style="margin: 0 0 0 0; padding: 0; "><span class="label label-primary">投票</span></h4>
-						</div>
-					</div>
-					<div class="item-disc" style="">
-						ステータスバーに複数ステータスをスタックすることでレイアウトはすっきりするが、真面目にやろうとすると画面のコードがスッパゲッティに成り得る。
-						なので、別にラベル表示かmouseoverとかがきっと無難
-						<a data-toggle="modal" href="#itemId001description" class="btn-xs btn-info">もっと読む！</a>
-						<div class="modal fade" id="itemId001description">
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal"><span>×</span></button>
-										<h4 class="modal-title">みだし</h4>
-									</div>
-									<div class="modal-body">
-										ぴよぴよのぴよぴよによるぴよぴよぴよぴよのぴよぴよによるぴよぴよぴよぴよのぴよぴよによるぴよぴよぴよぴよのぴよぴよによるぴよぴよぴよぴよのぴよぴよによるぴよぴよぴよぴよのぴよぴよによるぴよぴよぴよぴよのぴよぴよによるぴよぴよ★
-										ぴよぴよのぴよぴよによるぴよぴよぴよぴよのぴよぴよによるぴよぴよぴよぴよのぴよぴよによるぴよぴよぴよぴよのぴよぴよによるぴよぴよぴよぴよのぴよぴよによるぴよぴよぴよぴよのぴよぴよによるぴよぴよぴよぴよのぴよぴよによるぴよぴよ★ 
-									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
-									</div>
-								</div>
+							<div class="progress-bar progress-bar-warning" style="width: 84%;">
+								<span style="color: white;">ホゲホゲまであと42票</span>
 							</div>
 						</div>
+						<!-- statusbar // -->
 					</div>
-
+					<div class="col-md-3" style="">
+						<h4 style="margin: 0 0 0 0; padding: 0; "><span class="label label-primary">投票</span></h4>
+					</div>
 				</div>
+				<div class="item-disc" style="">
+					ステータスバーに複数ステータスをスタックすることでレイアウトはすっきりするが、真面目にやろうとすると画面のコードがスッパゲッティに成り得る。
+					なので、別にラベル表示かmouseoverとかがきっと無難
+					<a data-toggle="modal" href="#itemId001description" class="btn-xs btn-info">もっと読む！</a>
+				</div>
+
 			</div>
-			
-			<div class="grid-item">
+		</div>
+		
+		<div class="grid-item">
 			<div class="grid-item-inner-con" style="background-color: ghostwhite; padding: 10px;">
 				<!-- 個別タイルの見出し -->
 				<span style="font-size: x-large; font-weight: bold; text-align: center; color: maroon;">締切前X投票後の場合の見てくれ</span>
@@ -183,7 +159,7 @@
 				<!-- statusbar // -->
 				<div class="container-fluid" style="display: inline; text-align: center; ">
 							<h4>
-							<span class="label label-default">締切</span> あと<span style="font-weight: bold; color: crimson;">3</span>日
+							<span class="label label-default">締切</span> あと<span style="font-weight: bold; color: crimson;">2</span>日
 							<span class="label label-default">ホゲホゲまであと42票</span>
 							<span class="label label-default">送信</span>
 							</h4>
@@ -191,11 +167,12 @@
 				<div class="item-disc">
 				ぴよぴよのぴよぴよによるぴよぴよぴよぴよのぴよぴよによるぴよぴよぴよぴよのぴよぴよによるぴよぴよぴよぴよのぴよぴよによるぴよぴよぴよぴよのぴよぴよによるぴよぴよぴよぴよのぴよぴよによるぴよぴよぴよぴよのぴよぴよによるぴよぴよ★
 				ぴよぴよのぴよぴよによるぴよぴよぴよぴよのぴよぴよによるぴよぴよぴよぴよのぴよぴよによるぴよぴよぴよぴよのぴよぴよによるぴよぴよぴよぴよのぴよぴよによるぴよぴよぴよぴよのぴよぴよによるぴよぴよぴよぴよのぴよぴよによるぴよぴよ★ 
+				<a href="#" value="hoge">hogeLink</a>
 				</div>
 			</div>
-			</div>
+		</div>
 
-			<div class="grid-item">
+		<div class="grid-item">
 			<div class="grid-item-inner-con" style="background-color: ghostwhite; padding: 10px;">
 				<!-- 個別タイルの見出し -->
 				<span style="font-size: x-large; font-weight: bold; text-align: center; color: maroon;">締切前X投票前の場合の見てくれ</span>
@@ -234,9 +211,9 @@
 				ほげほげほげげ<br/>
 				</div>
 			</div>
-			</div>
-			
-			<div class="grid-item">
+		</div>
+		
+		<div class="grid-item">
 			<div class="grid-item-inner-con" style="background-color: ghostwhite; padding: 10px;">
 				<!-- 個別タイルの見出し -->
 				<span style="font-size: x-large; font-weight: bold; text-align: center; color: maroon;">締切前X投票後の場合の見てくれ</span>
@@ -265,73 +242,116 @@
 				ほげほげほげげ<br/>
 				</div>
 			</div>
+		</div>
+		<div class="grid-item">
+			<div class="grid-item-inner-con" style="background-color: ghostwhite; padding: 10px;">
+				け<br/>け<br/>け<br/>け<br/>☆<br/>け<br/>け<br/>け<br/>け<br/>★<br/>
+				け<br/>け<br/>け<br/>け<br/>☆<br/>け<br/>け<br/>け<br/>け<br/>★<br/>
+				<a href="#" value="hoge">hogeLink</a>
 			</div>
+		</div>
 
-			<div id="grp02item001" class="grid-item">
-				<div class="grid-item-inner-con" style="background-color: ghostwhite; padding: 10px;">
-					あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>
-				</div>
+	</div>
+	<!-- ▲ タイル表示される要素を入れる箱(隙間なく整列させたいボックス群を囲むブロック) (required) -->
+	
+	<!-- ▼ タイル表示される要素を入れる箱(隙間なく整列させたいボックス群を囲むブロック) (required) -->
+	<div id="grid-group-02" class="grid grid-group" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 20 }'>
+
+		<div class="grid-item">
+			<div class="grid-item-inner-con" style="background-color: ghostwhite; padding: 10px;">
+				1<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>
+				<a href="#" value="hoge">hogeLink</a>
 			</div>
-			<div class="grid-item">
-				<div class="grid-item-inner-con" style="background-color: ghostwhite; padding: 10px;">
-					あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>
-				</div>
+		</div>
+		<div class="grid-item">
+			<div class="grid-item-inner-con" style="background-color: ghostwhite; padding: 10px;">
+				2<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>
+				<a href="#" value="hoge">hogeLink</a>
 			</div>
-			<div class="grid-item">
-				<div class="grid-item-inner-con" style="background-color: ghostwhite; padding: 10px;">
-					あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>
-				</div>
+		</div>
+		<div class="grid-item">
+			<div class="grid-item-inner-con" style="background-color: ghostwhite; padding: 10px;">
+				3<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>
+				<a href="#" value="hoge">hogeLink</a>
 			</div>
-			<div class="grid-item">
-				<div class="grid-item-inner-con" style="background-color: ghostwhite; padding: 10px;">
-					あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>
-				</div>
+		</div>
+		<div class="grid-item">
+			<div class="grid-item-inner-con" style="background-color: ghostwhite; padding: 10px;">
+				4<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>
+				<a href="#" value="hoge">hogeLink</a>
 			</div>
-			<div class="grid-item">
-				<div class="grid-item-inner-con" style="background-color: ghostwhite; padding: 10px;">
-					あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>
-				</div>
+		</div>
+		<div class="grid-item">
+			<div class="grid-item-inner-con" style="background-color: ghostwhite; padding: 10px;">
+				5<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>
+				<a href="#" value="hoge">hogeLink</a>
 			</div>
-			<div class="grid-item">
-				<div class="grid-item-inner-con" style="background-color: ghostwhite; padding: 10px;">
-					あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>
-				</div>
+		</div>
+		<div class="grid-item">
+			<div class="grid-item-inner-con" style="background-color: ghostwhite; padding: 10px;">
+				6<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>あ<br/>
+				<a href="#" value="hoge">hogeLink</a>
 			</div>
-			<div id="grp03item001" class="grid-item">
-				<div class="grid-item-inner-con" style="background-color: ghostwhite; padding: 10px;">
-					い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>
-				</div>
+		</div>
+		<div id="grp03item001" class="grid-item">
+			<div class="grid-item-inner-con" style="background-color: ghostwhite; padding: 10px;">
+				7<br/>
+				あ<br/>あ<br/>あ<br/>あ<br/>☆<br/>あ<br/>あ<br/>あ<br/>あ<br/>★<br/>
+				あ<br/>あ<br/>あ<br/>あ<br/>☆<br/>あ<br/>あ<br/>あ<br/>あ<br/>★<br/>
+				<a href="#" value="hoge">hogeLink</a>
 			</div>
-			<div class="grid-item">
-				<div class="grid-item-inner-con" style="background-color: ghostwhite; padding: 10px;">
-					い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>
-				</div>
-			</div>
-			<div class="grid-item">
-				<div class="grid-item-inner-con" style="background-color: ghostwhite; padding: 10px;">
-					い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>
-				</div>
-			</div>
-			<div class="grid-item">
-				<div class="grid-item-inner-con" style="background-color: ghostwhite; padding: 10px;">
-					い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>
-				</div>
-			</div>
-			<div class="grid-item">
-				<div class="grid-item-inner-con" style="background-color: ghostwhite; padding: 10px;">
-					い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>
-				</div>
-			</div>
-			<div class="grid-item">
-				<div class="grid-item-inner-con" style="background-color: ghostwhite; padding: 10px;">
-					い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>
-				</div>
-			</div>
-		
+		</div>
 	</div>
 	<!-- ▲ タイル表示される要素を入れる箱(隙間なく整列させたいボックス群を囲むブロック) (required) -->
 
+	<!-- ▼ タイル表示される要素を入れる箱(隙間なく整列させたいボックス群を囲むブロック) (required) -->
+	<div id="grid-group-03" class="grid grid-group" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 20 }'>
+		<div class="grid-item">
+			<div class="grid-item-inner-con" style="background-color: ghostwhite; padding: 10px;">
+				1<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>
+				<a href="#" value="hoge">hogeLink</a>
+			</div>
+		</div>
+		<div class="grid-item">
+			<div class="grid-item-inner-con" style="background-color: ghostwhite; padding: 10px;">
+				2<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>
+				<a href="#" value="hoge">hogeLink</a>
+			</div>
+		</div>
+		<div class="grid-item">
+			<div class="grid-item-inner-con" style="background-color: ghostwhite; padding: 10px;">
+				3<br/>
+				い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>
+				い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>
+				い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>
+				い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>い<br/>
+				<a href="#" value="hoge">hogeLink</a>
+			</div>
+		</div>
+	</div>
+	<!-- ▲ タイル表示される要素を入れる箱(隙間なく整列させたいボックス群を囲むブロック) (required) -->
+
+	<!-- 表示で他のグリッドアイテムの下に隠れてしまわないように、最後に定義する。-->
+	<div class="modal fade" id="itemId001description">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+					<h4 class="modal-title">みだし</h4>
+				</div>
+				<div class="modal-body">
+					ぴよぴよのぴよぴよによるぴよぴよぴよぴよのぴよぴよによるぴよぴよぴよぴよのぴよぴよによるぴよぴよぴよぴよのぴよぴよによるぴよぴよぴよぴよのぴよぴよによるぴよぴよぴよぴよのぴよぴよによるぴよぴよぴよぴよのぴよぴよによるぴよぴよ★
+					ぴよぴよのぴよぴよによるぴよぴよぴよぴよのぴよぴよによるぴよぴよぴよぴよのぴよぴよによるぴよぴよぴよぴよのぴよぴよによるぴよぴよぴよぴよのぴよぴよによるぴよぴよぴよぴよのぴよぴよによるぴよぴよぴよぴよのぴよぴよによるぴよぴよ★ 
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+				</div>
+			</div>
+		</div>
+	</div>
 	
+	</div>
+	<!-- ▲ 見出し欄固定用の箱 (required) -->
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -344,7 +364,13 @@
 		var height = $('#header').height();
 		console.log("height of header is " + height);
 		// bodyのpaddingにnavbarの高さを設定する
-		$('.grid-container').css('padding-top',height); 
+		$('.body-contents-container').css('padding-top', height); 
+		
+		// ページ内遷移先のタイルラッパーもnavbarの高さを設定する
+		var height4margin = 0 - height;
+		console.log("height4margin is " + height4margin);
+		$('.grid-group').css('padding-top', height); 
+		$('.grid-group').css('margin-top', height4margin);
 	});
 	</script>
 	<script type="text/javascript">
